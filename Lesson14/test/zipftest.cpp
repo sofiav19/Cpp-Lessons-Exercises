@@ -9,7 +9,7 @@ using namespace homework;
 
 // Test case for computeWordFrequency
 TEST(ZipfTest, ComputeWordFrequency) {
-    std::vector<wchar_t> testText = {L'H', L'e', L'l', L'l', L'o', L' ', L'w', L'o', L'r', L'l', L'd'};
+    std::vector<wchar_t> testText = {L'H', L'e', L'l', L'l', L'o', L' ', L's', L'o', L'f', L'i', L'a'};
     auto frequencyMap = computeWordFrequency(testText);
 
     // Check that "Hello" occurs once
@@ -18,7 +18,7 @@ TEST(ZipfTest, ComputeWordFrequency) {
     EXPECT_NE(helloIt, frequencyMap.end());
     EXPECT_EQ(helloIt->second, 1);
 
-    // Check that "world" occurs once
+    // Check that "sofia" occurs once
     auto worldIt = std::find_if(frequencyMap.begin(), frequencyMap.end(),
                                 [](const std::pair<std::wstring, int>& pair) { return pair.first == L"world"; });
     EXPECT_NE(worldIt, frequencyMap.end());
@@ -33,6 +33,6 @@ TEST(ZipfTest, CountUniqueWords) {
     std::vector<wchar_t> testText = {L'T', L'e', L's', L't', L' ', L'T', L'e', L's', L't', L' ', L'C', L'a', L's', L'e'};
     int uniqueWordCount = countUniqueWords(testText);
 
-    // Only "Test" and "Case" are unique
+    // There should be only 2 unique words
     EXPECT_EQ(uniqueWordCount, 2);
 }

@@ -19,7 +19,7 @@ int main() {
     int uniqueWords = countUniqueWords(processedText);
     std::wcout << L"\nNumber of unique words: " << uniqueWords << std::endl;
     int uniqueWordsesp = countUniqueWords(processedTextesp);
-    std::wcout << L"\nNumber of unique words in Quijote: " << uniqueWordsesp << std::endl;
+    std::wcout << L"Number of unique words in Quijote: " << uniqueWordsesp << std::endl;
 
     // Sort frequencies in descending order
     std::vector<std::pair<std::wstring, int>> sortedFrequencies = sortFrequencies(wordFrequency);
@@ -32,8 +32,11 @@ int main() {
     std::wstring outputFilenameesp = L"../homework1/word_frequencies_quijote.txt";
     outputWordFrequencies(sortedFrequenciesesp, outputFilenameesp);
 
+    std::wcout << std::endl;
     // Print hapax legomena
+    std::wcout << L"Number of hapax legomena in Moby Dick (words that occur only once): " << std::endl;
     printHapaxLegomena(sortedFrequencies);
+    std::wcout << L"Number of hapax legomena in El Quijote (words that occur only once): " << std::endl;
     printHapaxLegomena(sortedFrequenciesesp);
 
     // Plot word frequencies on a log-log scale

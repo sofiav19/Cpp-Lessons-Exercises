@@ -8,11 +8,11 @@
 using namespace homework;
 // Test case for computeWordFrequency
 TEST(ZipfTest, ComputeWordFrequency) {
-    std::vector<wchar_t> testText = {L'H', L'e', L'l', L'l', L'o', L' ', L'w', L'o', L'r', L'l', L'd'};
+    std::vector<wchar_t> testText = {L'H', L'e', L'l', L'l', L'o', L' ', L's', L'o', L'f', L'i', L'a'};
     auto frequencyMap = computeWordFrequency(testText);
 
     EXPECT_EQ(frequencyMap[L"Hello"], 1);  // "Hello" occurs once
-    EXPECT_EQ(frequencyMap[L"world"], 1);  // "world" occurs once
+    EXPECT_EQ(frequencyMap[L"sofia"], 1);  // "world" occurs once
     EXPECT_EQ(frequencyMap.size(), 2);     // Expect 2 unique words
 }
 

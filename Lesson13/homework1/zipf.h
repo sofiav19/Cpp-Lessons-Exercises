@@ -170,9 +170,6 @@ namespace homework{
             frequencies2.push_back(frequency);
         }
 
-        std::cout << "Ranks1 size: " << ranks1.size() << ", Frequencies1 size: " << frequencies1.size() << std::endl;
-        std::cout << "Ranks2 size: " << ranks2.size() << ", Frequencies2 size: " << frequencies2.size() << std::endl;
-
         auto fig = figure(true);
         hold(true); 
         
@@ -216,7 +213,7 @@ namespace homework{
         }
 
         // Print the number of hapax legomena
-        std::wcout << L"Number of hapax legomena (words that occur only once): " << hapaxCount << std::endl;
+        std::wcout << hapaxCount << std::endl;
 
         // Print some examples of hapax legomena
         std::wcout << L"Examples of hapax legomena: ";

@@ -23,6 +23,7 @@ namespace homework{
         std::string fileName = converter.to_bytes(wfileName);
 
         std::wifstream file(fileName);
+        // reading and writing operations respect Spanish character encoding with the locale "es_ES.UTF-8"
         file.imbue(std::locale("es_ES.UTF-8")); 
 
         std::vector<wchar_t> book;
@@ -53,17 +54,20 @@ namespace homework{
         std::wstring word;
         std::wstringstream ss;
         
+        // Concatenate characters from `book` into a stream to parse as words
         for (wchar_t c : book) {
             ss << c;
         }
 
+        // For each word in the stream, check if it exists in the vector 
         while (ss >> word) {
+            // `find_if` helps locate words in `wordFrequency` to avoid duplicates
             auto it = std::find_if(wordFrequency.begin(), wordFrequency.end(),
                                    [&word](const std::pair<std::wstring, int>& pair) {
                                        return pair.first == word;
                                    });
             if (it != wordFrequency.end()) {
-                it->second++;
+                it->second++; // Increment frequency if word is found
             } else {
                 wordFrequency.emplace_back(word, 1);
             }
@@ -85,11 +89,12 @@ namespace homework{
             ss << c;
         }
         while (ss >> word){
+            // For each word, check if it's already in `uniqueWords`
             if (std::find(uniqueWords.begin(), uniqueWords.end(), word) == uniqueWords.end()) {
-                uniqueWords.push_back(word);
+                uniqueWords.push_back(word); // Add new unique word
             }
         }
-        return uniqueWords.size();
+        return uniqueWords.size(); // Returns the count of unique words
     }
 
     /**
@@ -99,10 +104,11 @@ namespace homework{
      */
     std::vector<std::pair<std::wstring, int>> sortFrequencies(std::vector<std::pair<std::wstring, int>>& frequencies){
         std::sort(frequencies.begin(), frequencies.end(),
+        // `std::sort` with a custom comparator to sort by frequency in descending order
                   [](const std::pair<std::wstring, int>& a, const std::pair<std::wstring, int>& b) {
                       return a.second > b.second;
                   });
-        return frequencies;
+        return frequencies; // returnsorted vector
 
     }
 
@@ -179,12 +185,13 @@ namespace homework{
      * @param sortedFrequencies A vector of pairs, each containing a word and its frequency.
      */
     void printHapaxLegomena(const std::vector<std::pair<std::wstring, int>>& sortedFrequencies) {
+        // `std::count_if` counts the number of words that appear only once
         int hapaxCount = std::count_if(sortedFrequencies.begin(), sortedFrequencies.end(),
                                        [](const std::pair<std::wstring, int>& pair) {
                                            return pair.second == 1;
                                        });
 
-        std::wcout << L"Number of hapax legomena (words that occur only once): " << hapaxCount << std::endl;
+        std::wcout << hapaxCount << std::endl;
         std::wcout << L"Examples of hapax legomena: ";
         
         int count = 0;
